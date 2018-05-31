@@ -1,7 +1,7 @@
 'use strict';
 
 const arn = process.env.sns_arn;
-const debug = process.env.debug || false;
+const debug = process.env.debug || 0;
 const zlib = require('zlib');
 const AWS = require('aws-sdk');
 let sns = new AWS.SNS();
@@ -13,7 +13,7 @@ exports.handler = (event, context, callback) => {
       return callback(err);
     }
     const parsed = JSON.parse(res.toString('utf8'));
-    if (debug) {
+    if (debug == 1) {
       console.log('Decoded payload:', JSON.stringify(parsed));
     }
     callback(null, `Successfully processed ${parsed.logEvents.length} log events.`);
