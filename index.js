@@ -4,7 +4,7 @@ const arn = process.env.sns_arn;
 const debug = process.env.debug || 0;
 const zlib = require('zlib');
 const AWS = require('aws-sdk');
-let sns = new AWS.SNS();
+const sns = new AWS.SNS();
 
 exports.handler = (event, context, callback) => {
   const payload = new Buffer(event.awslogs.data, 'base64');
